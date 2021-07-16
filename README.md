@@ -1,1 +1,3 @@
-# storekit-wrapper
+# StoreKitWrapper
+
+A description of this package.
