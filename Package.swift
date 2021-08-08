@@ -19,7 +19,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/ntwrk-inc/foundation-extensions.git", .upToNextMajor(from: "0.0.1")),
-        .package(url: "../Logger", .upToNextMajor(from: "0.0.1")),
+        .package(url: "https://github.com/ntwrk-inc/logger.git", .upToNextMajor(from: "0.0.1")),
     ],
     targets: [
         .target(
