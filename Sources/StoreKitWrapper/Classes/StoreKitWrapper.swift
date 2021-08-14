@@ -217,12 +217,12 @@ final class StoreKitWrapper: NSObject, StoreKitWraperProtocol {
         onPurchaseHandler.value = nil
 
         if let transactionError = transaction.error {
-            guard let error = transactionError as? SKError else {
+            guard let skError = transactionError as? SKError else {
                 completion(.failure(error(code: .unknown)))
                 return
             }
 
-            completion(.failure(error))
+            completion(.failure(skError))
         } else {
             completion(.success(()))
         }
@@ -237,7 +237,7 @@ extension StoreKitWrapper: SKProductsRequestDelegate {
 
         let onReciveProductHandler = onReciveProductsHandler.value
 
-        guard let onReciveProductHandler = onReciveProductHandler else {
+        guard let reciveProductHandler = onReciveProductHandler else {
             log.error(message: "No waiting callback")
             return
         }
@@ -247,7 +247,7 @@ extension StoreKitWrapper: SKProductsRequestDelegate {
         if products.isEmpty {
             log.error(message: "Product request returned no products")
 
-            onReciveProductHandler(
+            reciveProductHandler(
                 .failure(
                     error(
                         code: .storeProductNotAvailable,
@@ -257,7 +257,7 @@ extension StoreKitWrapper: SKProductsRequestDelegate {
             )
         } else {
             log.debug(message: "Products received")
-            onReciveProductHandler(.success(products))
+            reciveProductHandler(.success(products))
         }
     }
 }

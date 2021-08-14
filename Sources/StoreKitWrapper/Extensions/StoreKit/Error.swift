@@ -32,7 +32,7 @@ private func userInfo(code: SKError.Code, description: String? = nil) -> [String
 ///
 /// - Returns: The new instance of the `SKError`.
 internal func error(code: SKError.Code, description: String? = nil) -> SKError {
-    let userInfo = userInfo(code: code, description: description)
-    let error = NSError(domain: SKErrorDomain, code: code.rawValue, userInfo: userInfo)
+    let info = userInfo(code: code, description: description)
+    let error = NSError(domain: SKErrorDomain, code: code.rawValue, userInfo: info)
     return SKError(_nsError: error)
 }
